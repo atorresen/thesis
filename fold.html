@@ -2,80 +2,72 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="viewport" content="user-scalable=no, width=device-width">
+    <link rel="icon" href="icon.ico">
+    <link rel="stylesheet" href="styles.css">
     <title>fold</title>
 </head>
 
-<body onload="f()" ontouchmove="BlockMove(event);" style="margin: 200px 100px;">
+<body>
     <div>
-        <input id="in" type="text" oninput="f()"
-            value="invitation"
-            size="20"
-            style="font-family: monospace; font-size: 1.5rem; resize: none"
+        <h2 style="display: inline;">index:</h2>
+        <input id="in" type="number" oninput="f()"
+            step="1" min="1" max="500"
+            style="font-size: 1.5rem; resize: none; display: inline;"
         ></input>
-        <br>
-        <canvas id="canvas" width="1200" height="300"></canvas>
-        <br>
-        <table id="keyboard"></table>
+        <br><br>
+        <h2 style="display: inline; color: #777;">generator:</h2>
+        <p id="gen" style="display: inline; font-size: 1rem"></p>
+        <br><br>
+        <h2 style="display: inline; color: #777;">result:</h2>
+        <p id="res" style="display: inline; font-size: 1rem"></p>
+        <br><br>
+        <canvas id="canvas" width="100" height="350"></canvas>
     </div>
     <script type="text/javascript">
-        const abc = "abcdefghijklmnopqrstuvwxyz".split("");
-        const width = 1200;
+
+        const genlists = [[1, 2, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2, 1], [1, 2, 1, 1, 2, 2, 1, 2, 1, 1, 2, 1, 2], [2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2], [1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 1], [2, 2, 1, 2, 2, 1, 1, 2, 1, 2, 2, 1, 2], [2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 1], [1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 2, 2, 1], [2, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 1, 1], [2, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2], [1, 2, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 1], [1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1], [2, 2, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2], [1, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 1, 2], [1, 2, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2, 1], [2, 1, 1, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2], [1, 2, 2, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1], [1, 2, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 1], [2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2], [2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 1, 2, 1], [1, 2, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2, 1], [2, 2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 1, 2], [1, 1, 2, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1], [2, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2], [2, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 1, 2], [1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 2], [1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2, 1, 1], [2, 1, 2, 2, 1, 2, 1, 1, 2, 2, 1, 2, 2], [1, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2, 1], [1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 2, 1, 2], [2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 1, 2, 1], [1, 2, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 1], [2, 2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2], [1, 1, 2, 1, 1, 2, 2, 1, 2, 1, 1, 2, 1], [1, 2, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 2], [2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2], [1, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 2, 2], [1, 2, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 1], [1, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 1, 2], [2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2], [1, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2, 1], [1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 2, 2, 1], [2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 1], [2, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2], [1, 2, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2], [1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 1, 1], [2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2], [2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 1, 2, 1], [1, 2, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 1], [2, 2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 1, 2], [1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 2, 1], [2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2], [2, 1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 2], [1, 2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 1], [1, 2, 1, 1, 2, 2, 1, 2, 1, 1, 2, 1, 1], [2, 2, 1, 2, 2, 1, 1, 2, 1, 2, 2, 1, 2], [1, 1, 2, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1], [1, 2, 2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2]];
+        const foldlists = [[1, 2, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 2, 1], [2, 1, 1, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2], [1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 1], [2, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2], [1, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 1], [2, 2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2], [1, 2, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2, 1], [2, 2, 1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2], [1, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 2, 2, 1, 2, 1, 1], [2, 1, 1, 2, 2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2], [1, 2, 2, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 2, 2, 1], [2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2], [1, 2, 1, 1, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 1, 1], [2, 1, 1, 2, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 1, 2], [1, 1, 2, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 2, 2, 1, 2, 1, 1], [2, 1, 1, 2, 2, 1, 2, 2, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 1, 2], [1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 1, 1, 2, 1], [2, 2, 1, 2, 2, 1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 2, 1, 2, 2], [1, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 2, 2, 1], [2, 1, 1, 2, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 1, 2], [1, 1, 2, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 1, 1], [2, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 1, 1, 2], [1, 1, 2, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 1, 2, 1, 1], [2, 2, 1, 2, 2, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 2, 2], [1, 2, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 1], [2, 1, 1, 2, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2], [1, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 1], [2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 1, 2], [1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 1, 1, 2, 1, 1], [2, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 1, 1, 2], [1, 2, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1], [2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 2], [1, 2, 1, 1, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 1], [2, 1, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2], [1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 1], [2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2], [1, 2, 2, 1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1], [2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2]];
+
         function f() {
-            var text = document.getElementById("in");
-            var chars = text.value.toLowerCase().split("");
-            var digits = [];
-            for (var i = 0; i < chars.length; i++) {
-                var c = chars[i];
-                var d = abc.indexOf(c) + 1;
-                var b = d.toString(2).split("");
-                digits = digits.concat(b);
-            };
-            const midline = 100;
-            const scale = 30;
-            var points = [ [0, midline] ];
-            for (var i = 0; i < digits.length; i++) {
+            var n = document.getElementById("in").value;
+            var gen = genlists[n - 1];
+            var res = foldlists[n - 1];
+            var genP = document.getElementById("gen");
+            genP.innerText = gen;
+             var resP = document.getElementById("res");
+            resP.innerText = res;
+            const scale = 20;
+            const midline = 2 * scale;
+            var points = [ [midline, 0] ];
+            for (var i = 0; i < res.length; i++) {
                 var last = points.slice(-1)[0];
-                var val = scale * Number(digits[i]);
-                if ( val == 0 ) { val = 2 * scale; };
+                var val = scale * res[i];
                 var m = [0, 0];
                 if ( (i % 2) == 0 ) {
+                    m = [0, val]
+                } else if ( last[0] > midline ) {
+                    m = [-val, 0]
+                } else if ( last[0] < midline ) {
                     m = [val, 0]
-                } else if ( last[1] > midline ) {
-                    m = [0, -val]
-                } else if ( last[1] < midline ) {
-                    m = [0, val]
                 } else if ( points[i] == 1 ) {
-                    m = [0, -val]
+                    m = [-val, 0]
                 } else {
-                    m = [0, val]
+                    m = [val, 0]
                 };
-                if (last[0] + m[0] >= width) {
-                    text.disabled = true;
-                } else {
-                    points.push( [last[0] + m[0], last[1] + m[1]] );
-                };
+                points.push([ last[0] + m[0], last[1] + m[1] ]);
             };
-            text.disabled = false;
-            text.size = Math.max(20, chars.length);
             var canvas = document.getElementById("canvas");
             var c = canvas.getContext("2d");
             c.beginPath();
             c.fillStyle = "#fff";
-            c.fillRect(0, 0, width, width);
-            c.fillStyle = "#444";
+            c.fillRect(0, 0, 350, 350);
             c.moveTo(points[0][0], points[0][1]);
             for (i = 0; i < points.length; i++) {
                 c.lineTo(points[i][0], points[i][1]);
             }
             c.stroke()
         };
-
-        //custom keyboard
-
-        // prevent browser movement
-        function BlockMove(event) {event.preventDefault();}
     </script>
 </body>
 
