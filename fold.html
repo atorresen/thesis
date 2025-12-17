@@ -11,7 +11,7 @@
 <body>
     <div>
         <h2 style="display: inline;">index:</h2>
-        <input id="in" type="number" oninput="f()"
+        <input id="in" type="tel" oninput="f()"
             step="1" min="1" max="615"
             style="font-family: monospace; font-size: 1.5rem; display: inline;"
         ></input>
@@ -33,9 +33,9 @@
             var gen = genlists[n - 1];
             var res = foldlists[n - 1];
             var genP = document.getElementById("gen");
-            genP.innerText = gen;
+            if (gen == null) {genP.innerText = ""} else {genP.innerText = gen};
             var resP = document.getElementById("res");
-            resP.innerText = res;
+            if (res == null) {resP.innerText = ""} else {resP.innerText = res};
             const scale = 20;
             const midline = 2 * scale;
             var points = [ [midline, 0] ];
