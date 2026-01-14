@@ -22,6 +22,12 @@ h6 {
 	color: #999;
 }
 
+.lh {
+	font-size: 0.75rem;
+	margin-left: -20px;
+	font-weight: bold;
+}
+
 blockquote {
 	color: #999;
 }
