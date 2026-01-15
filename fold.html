@@ -50,6 +50,7 @@
             } else {
                 genP.innerText = gen;
                 resP.innerText = res;
+                // draw folds
                 const scale = 20;
                 const midline = 2 * scale;
                 var points = [ [midline, 0] ];
@@ -57,7 +58,7 @@
                     var last = points.slice(-1)[0];
                     var val = scale * res[i];
                     var m = [0, 0];
-                    if ( (i % 2) == 0 ) {
+                    if ( (i % 2) == 1 ) {
                         m = [0, val]
                     } else if ( last[0] > midline ) {
                         m = [-val, 0]
