@@ -90,6 +90,12 @@
                 c.stroke()
             }
         };
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const index = urlParams.get('index');
+        document.querySelector('input#in').value = index;
+        f();
     </script>
 </body>
 
