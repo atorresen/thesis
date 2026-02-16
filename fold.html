@@ -109,13 +109,33 @@
                     dir.push(d)
                 }
                 dirP.innerText = dir;
+                return dir
             }
         };
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const index = urlParams.get("index");
         document.querySelector("input#in").value = index;
-        f()
+        f();
+
+        
+        function printTags() {
+            let taglists = [["index", "generator", "lengths", "directions"]];
+            for (let i = 1; i < 600; i++) {
+                document.querySelector("input#in").value = i;
+                let dir = f();
+                taglists.push([
+                    i,
+                    genlists[i].join(" "),
+                    foldlists[i].join(" "),
+                    dir.join(" ")
+                ]);
+            };
+            let csvstring = "data:text/csv;charset=utf-8," + taglists.map(e => e.join(",")).join("\n");
+            var encodedUri = encodeURI(csvstring);
+            window.open(encodedUri);
+        }
+        // printTags();
     </script>
 </body>
 
