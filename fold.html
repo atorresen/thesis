@@ -20,7 +20,7 @@
         <h2 style="color: #000; display: inline;">index:</h2>
          <!-- TODO: change back to type="tell" for mobile keyboard -->
         <input id="in" type="number" oninput="f()"
-            step="1" min="1" max="615" maxlength="3" size="4"
+            step="1" min="1" maxlength="3" size="4"
         ></input>
         <br>
         <h2>generator:</h2>
@@ -30,9 +30,11 @@
         <h2>directions:</h2>
         <p id="dir" class="seqP"></p>
         <br>
-        <canvas style="transform: rotate(180deg)" id="canvas" width="200" height="350"></canvas>
+        <canvas style="transform: rotate(180deg)" id="canvas" width="200" height="400"></canvas>
     </div>
     <script type="text/javascript">
+        document.getElementById("in").max = foldlists.length;
+
         function f() {
             // clear canvas
             let canvas = document.getElementById("canvas");
@@ -80,6 +82,7 @@
                     };
                     points.push([ last[0] + m[0], last[1] + m[1] ]);
                 };
+                canvas.height = points[points.length - 1][1] + 1;
                 c.moveTo(points[0][0], points[0][1]);
                 c.beginPath();
                 for (i = 0; i < points.length; i++) {
@@ -109,7 +112,28 @@
                     dir.push(d)
                 }
                 dirP.innerText = dir;
-                return dir
+
+                const inchesPerUnit = 2;
+
+                let height = inchesPerUnit * (points[points.length - 1][1] - 1) / scale;
+
+                let length = inchesPerUnit * res.reduce((a, b) => a + b);
+                
+                let endOrientation;
+                if ( (points.length % 2) == 0 ) {
+                    endOrientation = "V";
+                } else {
+                    endOrientation = "H";
+                };
+
+                 // return: [
+                    // list of fold directions,
+                    // height, in inches, from top to bottom of folded wire
+                    // length, in inches, of wire used to form folds (should be <= 72)
+                    // endOrientation, i.e., whether final fold is horiz (H) or vert (V)
+                //]
+
+                return [dir, height, length, endOrientation, finalBlocksLength]
             }
         };
         const queryString = window.location.search;
@@ -118,24 +142,34 @@
         document.querySelector("input#in").value = index;
         f();
 
-        
-        function printTags() {
-            let taglists = [["index", "generator", "lengths", "directions"]];
-            for (let i = 1; i < 600; i++) {
-                document.querySelector("input#in").value = i;
-                let dir = f();
+        function csvInfo() {
+            let taglists = [
+                ["index", "generator", "lengths", "directions", "folded height", "wire length", "ending orientation"],
+                []
+            ];
+            let totalfoldedheight = 0;
+            for (let i = 0; i < foldlists.length - 1; i++) {
+                document.querySelector("input#in").value = i + 1;
+                let res = f();
+                let dir = res[0];
+                totalfoldedheight += res[1];
                 taglists.push([
-                    i,
+                    i + 1,
                     genlists[i].join(" "),
                     foldlists[i].join(" "),
-                    dir.join(" ")
+                    dir.join(" "),
+                    res[1], // folded height
+                    res[2], // wire length
+                    res[3] // ending orientation
                 ]);
             };
+            console.log(totalfoldedheight); // based on Mathematica model, aiming for 9638 inches
+            console.log(foldlists.length); // total number of folded wire pieces
             let csvstring = "data:text/csv;charset=utf-8," + taglists.map(e => e.join(",")).join("\n");
             var encodedUri = encodeURI(csvstring);
             window.open(encodedUri);
         }
-        // printTags();
+        // csvInfo();
     </script>
 </body>
 
