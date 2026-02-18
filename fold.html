@@ -18,8 +18,7 @@
 <body>
     <div>
         <h2 style="color: #000; display: inline;">index:</h2>
-         <!-- TODO: change back to type="tell" for mobile keyboard -->
-        <input id="in" type="number" oninput="f()"
+        <input id="in" type="tel" oninput="f()"
             step="1" min="1" maxlength="3" size="4"
         ></input>
         <br>
@@ -31,6 +30,8 @@
         <p id="dir" class="seqP"></p>
         <br>
         <canvas style="transform: rotate(180deg)" id="canvas" width="200" height="400"></canvas>
+        <br><br>
+        <p>info: <a href="https://en.wikipedia.org/wiki/Kolakoski_sequence">Wikipedia: Kolakoski sequence</a></p>
     </div>
     <script type="text/javascript">
         document.getElementById("in").max = foldlists.length;
