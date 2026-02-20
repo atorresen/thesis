@@ -124,22 +124,14 @@
                 let height = inchesPerUnit * (points[points.length - 1][1] - 1) / scale;
 
                 let length = inchesPerUnit * res.reduce((a, b) => a + b);
-                
-                let endOrientation;
-                if ( (points.length % 2) == 0 ) {
-                    endOrientation = "V";
-                } else {
-                    endOrientation = "H";
-                };
 
                  // return: [
                     // list of fold directions,
                     // height, in inches, from top to bottom of folded wire
                     // length, in inches, of wire used to form folds (should be <= 72)
-                    // endOrientation, i.e., whether final fold is horiz (H) or vert (V)
                 //]
 
-                return [dir, height, length, endOrientation]
+                return [dir, height, length]
             }
         };
         const queryString = window.location.search;
@@ -165,8 +157,7 @@
                     foldlists[i].join(" "),
                     dir.join(" "),
                     res[1], // folded height
-                    res[2], // wire length
-                    res[3] // ending orientation
+                    res[2] // wire length
                 ]);
             };
             console.log(totalfoldedheight); // based on Mathematica model, aiming for 9638 inches
