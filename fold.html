@@ -142,7 +142,7 @@
 
         function csvInfo() {
             let taglists = [
-                ["index", "generator", "result", "directions", "folded height", "wire length", "ending orientation"],
+                ["index", "generator", "starting term", "result", "directions", "folded height", "wire length"],
                 []
             ];
             let totalfoldedheight = 0;
@@ -154,6 +154,7 @@
                 taglists.push([
                     i + 1,
                     genlists[i].join(" "),
+                    foldlists[i][1], // result starting term
                     foldlists[i].join(" "),
                     dir.join(" "),
                     res[1], // folded height
