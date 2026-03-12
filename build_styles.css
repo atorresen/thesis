@@ -1,0 +1,14 @@
+body {
+	font-family: monospace;
+	margin: 0;
+	color: white;
+	background-color: black;
+}
+
+div {
+	padding: 20px 40px;
+}
+
+a {
+	color: #aaa;
+}
