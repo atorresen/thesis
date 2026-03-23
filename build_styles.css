@@ -9,6 +9,10 @@ div {
 	padding: 20px 40px;
 }
 
-a {
+a, em {
 	color: #aaa;
+}
+
+p {
+	margin-bottom: 20px;
 }
