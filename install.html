@@ -25,6 +25,11 @@
       color: black;
   }
 
+  .photos {
+    padding: 0px;
+    text-align: center;
+  }
+
   a, em {
     color: #aaa;
   }
@@ -46,40 +51,15 @@
       <p>These wires were folded by makers of math and art.</p>
     </div>
 
-    <div style="padding: 0px; text-align: center;">
-      <img src="images/hands/1.png">
-      <img src="images/hands/2.png">
-      <img src="images/hands/3.png">
-      <img src="images/hands/4.png">
-      <img src="images/hands/5.png">
-      <img src="images/hands/6.png">
-      <img src="images/hands/7.png">
-      <img src="images/hands/8.png">
-      <img src="images/hands/9.png">
-      <img src="images/hands/10.png">
-      <img src="images/hands/11.png">
-      <img src="images/hands/12.png">
-      <img src="images/hands/13.png">
-      <img src="images/hands/14.png">
+    <div class="photos">
+      <section id="section1"></section>
       <br>
       <p style="text-align: left; padding: 20px 40px;">
         In "make art with math" workshops, in an art museum and in a math department, in math classrooms and in art classrooms, 
         with people from ages 12 to 72, we bounced between math and art and math as we did art/math to make art.
       </p>
       <br>
-      <img src="images/hands/15.png">
-      <img src="images/hands/16.png">
-      <img src="images/hands/17.png">
-      <img src="images/hands/18.png">
-      <img src="images/hands/19.png">
-      <img src="images/hands/20.png">
-      <img src="images/hands/21.png">
-      <img src="images/hands/22.png">
-      <img src="images/hands/23.png">
-      <img src="images/hands/24.png">
-      <img src="images/hands/25.png">
-      <img src="images/hands/26.png">
-      <img src="images/hands/27.png">
+      <section id="section2"></section>
     </div>
     
     <div class="white">
@@ -99,7 +79,6 @@
         artifacts of tactile experiences of learning/doing/making/feeling this beautiful little piece of math.
       </p>
 
-      
       <center>
         <img style="max-width: 100%; max-height: 500px;" src="images/kolakoski_as_above.png" alt="kolakoski_as_above.png">
       </center>
@@ -116,5 +95,30 @@
       </span>
       <br><br>
     </div>
+
+    <div class="photos">
+      <section id="section3"></section>
+    </div>
 </body>
+
+<script>
+  let s1 = document.getElementById("section1");
+  let s2 = document.getElementById("section2");
+  let s3 = document.getElementById("section3");
+
+  let numImgs = 69;
+
+  for (let i = 0; i < numImgs; i++) {
+    const img = document.createElement("img");
+    img.src = "images/hands/" + (i + 1) + ".png";
+      if (i < 15) {
+        s1.appendChild(img)
+      } else if (i < 30) {
+        s2.appendChild(img)
+      } else {
+        s3.appendChild(img)
+      }
+  }
+
+</script>
 </html>
