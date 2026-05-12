@@ -78,7 +78,7 @@
     <section id="section1"></section>
     <br>
     <p style="text-align: left; padding: 20px 40px;">
-    In "make art with math" workshops — in math classrooms and in art classrooms, in an art museum and in a 
+    In "make art with math" <a href="workshop.html">workshops</a> — in math classrooms and in art classrooms, in an art museum and in a 
     math department, with artists and mathematicians from ages 4 to 79 — over 200 participants took math 
     into their own hands to spell out nearly 10,000 digits of the Kolakoski sequence.
     </p>
@@ -215,18 +215,19 @@ Ebrahimpour
   let s2 = document.getElementById("section2");
   let s3 = document.getElementById("section3");
 
-  let numImgs = 153;
+  let numImgs = 155;
 
   for (let i = 0; i < numImgs; i++) {
     const img = document.createElement("img");
     img.src = "images/hands/" + (i + 1) + ".png";
-      if (i < 15) {
-        s1.appendChild(img)
-      } else if (i < 30) {
-        s2.appendChild(img)
-      } else {
-        s3.appendChild(img)
-      }
+    img.loading = "lazy";
+    if (i < 15) {
+      s1.appendChild(img)
+    } else if (i < 30) {
+      s2.appendChild(img)
+    } else {
+      s3.appendChild(img)
+    }
   }
 
 </script>

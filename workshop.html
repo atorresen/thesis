@@ -33,9 +33,11 @@
   </ul>
 </div>
 
+<div id="hands"></div>
+
 <script>
-    let b = document.getElementById("imgs");
-    let numImgs = 33;
+    let div1 = document.getElementById("imgs");
+    let numImgs = 35;
     let range = [];
     for (let i = 0; i < numImgs; i++) {
         range.push(i);
@@ -46,10 +48,23 @@
     for (let e of order) {
         const img = document.createElement("img");
         img.src = "images/workshop/" + (e + 1) + ".png";
-        img.alt = e + "";
+        img.alt = (e + 1) + "";
         img.style = "max-height: 300px";
-        b.appendChild(img)
+        img.loading = "lazy";
+        div1.appendChild(img)
     }
+
+    let div2 = document.getElementById("hands");
+    let numHands = 155;
+    for (let i = 0; i < numHands; i++) {
+        const img = document.createElement("img");
+        img.src = "images/hands_color/" + (i + 1) + ".png";
+        img.alt = (i + 1) + "";
+        img.style = "max-height: 100px";
+        img.loading = "lazy";
+        div2.appendChild(img)
+    }
+
 </script>
 
 
