@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1, 2, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2, 1, 1, ...</title>
+    <link rel="stylesheet" href="styles.css">
+	<link rel="icon" href="icon.ico">
+</head>
+
+<style>
+    body {
+        margin: 8px;
+    }
+    img {
+        margin: 8px;
+    }
+</style>
+
+<div id="imgs"></div>
+
+<div>
+    <p>Thank you to all the wire-folding hosts:</p>
+  <ul>
+    <li>Brown University undergraduate math club</li>
+    <li>Winter Hill Community Innovation School, Somerville, MA</li>
+    <li>East Greenwich High School, East Greenwich, RI</li>
+    <li>School One high school, Providence, RI</li>
+    <li>Brown University College Day</li>
+    <li>RISD Digital+Media</li>
+    <li>RISD Museum</li>
+    <li>and various assemblies of classmates/neighbors/friends/family :)</li>
+  </ul>
+</div>
+
+<script>
+    let b = document.getElementById("imgs");
+    let numImgs = 33;
+    let range = [];
+    for (let i = 0; i < numImgs; i++) {
+        range.push(i);
+    }
+    let order = range.sort(
+        function(a, b) {return 0.5 - Math.random()}
+    );
+    for (let e of order) {
+        const img = document.createElement("img");
+        img.src = "images/workshop/" + (e + 1) + ".png";
+        img.alt = e + "";
+        img.style = "max-height: 300px";
+        b.appendChild(img)
+    }
+</script>
+
+
+
+</html>
