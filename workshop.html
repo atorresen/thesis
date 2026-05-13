@@ -9,10 +9,7 @@
 </head>
 
 <style>
-    body {
-        margin: 8px;
-    }
-    a, img {
+    body, a, img, h4, p {
         margin: 8px;
     }
 </style>
@@ -35,8 +32,71 @@
   </ul>
 </div>
 
-<div id="hands"></div>
+<div id="hands_1"></div>
 
+<h4>Contributing artists/mathematicians:</h4>
+<p style="line-height: 1.5">Abigail Glynn, Abigail Greenough, Ace Schwarzbach, Aditya Tyagi, 
+Aidan Baptista, Aidan Straut, Alana Deluty, Alex Vincent, Alice Wang, 
+Alix Stseryna, Allen Huang, Alma Disla, Aly Rajwani, Analia Haddad 
+Mejia, Andrea Munoz Ayala, Andrea Shoda, Andrew David Nelson, Andrey 
+Rocket Goretoy, Aneudy Dominguez, Anjani Deonarine, Anna Fern, Anne 
+Catherine Antonietti, AnneMarie Torresen, Annette Paull, Annie Huang, 
+Ansel N. Archer, Aren Guralp, Aria Andrade, Aubrey Dela Cruz, Ava 
+Carolan, Ava Colabelli, Ava Halvorsen, Ava McDowell, Ava Robbins, 
+Basma Saleh, Blake DeLorenzo, Brendan Sullivan, Caecilia Friesen, 
+Cailin Tolppa, Caleb Prisco, Cameron Daly, Campbell Bridges, Carla Y. 
+Ardon Galdamez, Carolina Kiang, Caroline Daley, Carter Cooper, 
+Chompoonek Nimitpornsuko, Christopher Haggert, Christopher Marcaccio, 
+Claire Gregg, Clover Nahabedian, Colby Leiter, Connor Hunter, Connor 
+Willison, Daniel Lantz, David H-C, Del Ziegman, Dianne Kemp, Djackina 
+Baptiste, Eben Byler, Echo Yan, Elias Viner, Ella Zonfrillo, Elle 
+Marcks, Emily Dymov, Emily Zhang, Emma Claire Zambendetti, Emmanuel 
+Zobinou, Ethan Costa, Ethan Dlugie, Eugene Choi, Evelyn Chow, Evelyn 
+Mae O'Hara, Fin McDonough, Gabby Ramos, Gabriel Gangji, Gen Ortiz, 
+Geremiah L. Lind, Gigi Selle, Greighan Brown, Griffin Mason, Guy 
+Settipane, Hailey Poirier, Harrison Michael Nakowicz, Hendrick 
+Sanchez, Henry Seeley, Hongchan Choi, Iris Freifeld, Isabella 
+Bradshaw, Isadora Wisenbaker, J, Jack Lennon, Jackson Albert, Jackson 
+Osterhus, Jack Spitzer, Jacob Kekoa Moon Hsieh, Jael J. Usher, Jaewon 
+Choi, James Marcaccio, James Plionis, Jangole Parks, Jay McCloskey, 
+Jay Ngeth, Jennifer Chen, Jess Skyleson, Jim Miller, Jimmy Gallagher, 
+Jinhao Lee, John Stephen Tsonos, Jonathan Dario Cruz Rivera, Jordan 
+Kostiuk, Jorday Johnson, José Antonio Montano Bejarno, Jose Lavandier 
+Reyes, Joshua Kou, Juan Castillo, Kathleen Samways, Kathleen Shoda, 
+Kayden Marracco, Keyan Zahedi, Kirin Lenoir MacDonald, Kristina 
+Lamour Sansone, Kyle Ottiano, Kyle Stang, Laura Musiak, Lauren 
+Roussel, Leanna Garcia Gonzalez, Lizzette Barrantes, Luke Reslow, 
+Maddie Auvil, Margarita Barrios Ponce, Mariela Yeregui, Mark 
+Christman, Martin Atilla, Max Prajapati, Megan Roppolo, Mia Delgado, 
+Miles Harwood, Milo Guyer-Osborne, Mimi Doman, Mohamed Gueye, Monica 
+Moskiewicz, Nancy Carreiro, Nancy Torresen, Nate Decesare, Nathaniel 
+Thompson, Nathan Kim, Nathan Lopez, Nathan Malafronte, Nicholas 
+Antonio Ferraz, Nicholas Mavroides, Nicole Skyleson, Nihal Nayak, 
+Noah O'Day, Nolan Hubbard, Norberto Pagani, Olivier Gallo, Oriana 
+Sett, Oscar Ludvig Boija, Oskar A. Chen, Paige Carter, Quinn 
+Connolly, Ramee Saleh, Reagan Langford, Reina Kirkendall, Rey Reyes, 
+Rickey Costello, Ritchelle Sorel, Rob Torresen, Rosangely Falcon 
+Abreu, Rosemary Miner, Rowan Gates, Rowen Cannina, Rylan Sauer, Salma 
+Hassaan, Samuel Feenane-Levine, Sarah Cherin, Sarah Lorthé, Sarah 
+Torresen, Sarina Hermanto, Saurin Leahy, Shae McKinney Gero, Shivam 
+Kogar, Sissi Wuyong Liu, Skyler Nigrelli, Sofia Rufino, Sophia Joyce, 
+Sophie Olund, Spencer, Stephen Shoda, Sung Hyun Hwang, Sydney 
+Butterfield, Sylvia Giessel, Tate Coker-Dodman, Taylor 
+Gopalakrishnan, Tejas Kumar, Terra Wang, Theodore Hilaire, Ulli K. 
+Ryder, Vida Zamora, Vrinda Sharma, Wenhao Cai, Whitney Bates, Will 
+Murray, Wyatt Gelzhiser, Xiaotong Cai, Yeustin Aguasvivas Lara, Yifei 
+Cai, Younoussa Faye, Yuxin Wang, Zachary Freer, Zachary Lavornia, 
+Zakhar Pysarevskyi, Zhijin Annie Hu, Zoë Barbano Grinder, Zoe 
+Ebrahimpour
+</p>
+<br>
+<div id="hands_2"></div>
+
+<br>
+<p>This project was made possible by support from the RISD Graduate Commons Grant and 
+    my fantastic thesis committee: Mariela Yeregui, Dr. Kristina Lamour Sansone, and Theo Ellin Ballew ♥ ♥ ♥
+</p>
+<br>
 <script>
     let div1 = document.getElementById("imgs");
     let numImgs = 35;
@@ -56,15 +116,20 @@
         div1.appendChild(img)
     }
 
-    let div2 = document.getElementById("hands");
-    let numHands = 155;
+    let hands1 = document.getElementById("hands_1");
+    let hands2 = document.getElementById("hands_2");
+    let numHands = 154;
     for (let i = 0; i < numHands; i++) {
         const img = document.createElement("img");
         img.src = "images/hands_color/" + (i + 1) + ".png";
         img.alt = (i + 1) + "";
         img.style = "max-height: 100px";
         img.loading = "lazy";
-        div2.appendChild(img)
+        if (i < numHands/2 + 3) {
+            hands1.appendChild(img)
+        } else {
+            hands2.appendChild(img)
+        }
     }
 
 </script>
