@@ -36,6 +36,12 @@ blockquote {
 	color: #999;
 }
 
+@media (max-width: 480px) {
+  blockquote {
+    margin-left: 0;
+  }
+}
+
 ul {
 	list-style-type: square;
 }
