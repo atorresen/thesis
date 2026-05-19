@@ -39,6 +39,7 @@ blockquote {
 @media (max-width: 480px) {
   blockquote {
     margin-left: 0;
+	font-size: 0.68rem;
   }
 }
 
