@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1, 2, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2, 1, 1, ...</title>
+    <link rel="stylesheet" href="styles.css">
+	<link rel="icon" href="icon.ico">
+</head>
+
+<style>
+    a, img, h4, p {
+        padding: 8px;
+    }
+</style>
+
+<a href="index.html">< site map</a>
+
+<div id="imgs"></div>
+
+<p>Many of these photos were taken by Sarah Meftah and Dr. Kristina Lamour Sansone -- thank you!</p>
+<p>This project was made possible by support from the RISD Graduate Commons Grant and 
+    my thesis committee: Mariela Yeregui, Dr. Kristina Lamour Sansone, and Theo Ellin Ballew ♥ ♥ ♥
+</p>
+<br>
+<script>
+    let div = document.getElementById("imgs");
+    let numImgs = 32;
+    let range = [];
+    for (let i = 0; i < numImgs; i++) {
+        range.push(i);
+    }
+    let order = range.sort(
+        function(a, b) {return 0.5 - Math.random()}
+    );
+    for (let e of order) {
+        const img = document.createElement("img");
+        img.src = "images/install/" + (e + 1) + ".png";
+        img.alt = (e + 1) + "";
+        img.style = "max-height: 300px";
+        img.loading = "lazy";
+        div.appendChild(img)
+    }
+
+</script>
+
+
+
+</html>
